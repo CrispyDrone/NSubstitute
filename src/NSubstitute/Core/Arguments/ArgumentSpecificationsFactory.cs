@@ -28,7 +28,12 @@ namespace NSubstitute.Core.Arguments
 
                 try
                 {
-                    result.Add(_argumentSpecificationFactory.Create(arg, paramInfo, suppliedArgumentSpecifications));
+                    var argSpec = _argumentSpecificationFactory.Create(arg, paramInfo, suppliedArgumentSpecifications);
+                    if (matchArgs == MatchArgs.ExplicitlySpecifiedOnly && paramInfo.IsOptional && object.Equals(paramInfo.DefaultValue, arg))
+                    {
+                        argSpec = argSpec.CreateCopyMatchingAnyArgOfType(argSpec.ForType);
+                    }
+                    result.Add(argSpec);
                 }
                 catch (AmbiguousArgumentsException ex) when (ex.ContainsDefaultMessage)
                 {

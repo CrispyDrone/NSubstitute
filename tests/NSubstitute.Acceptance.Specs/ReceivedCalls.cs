@@ -308,6 +308,16 @@ namespace NSubstitute.Acceptance.Specs
             StringAssert.Contains("minInclusive must be >= 0, but was -1.", ex.Message);
         }
 
+        [Test]
+        public void Check_call_was_received_with_any_args_for_non_specified_args()
+        {
+            _car.Turn(ICar.Direction.Right, false);
+
+            _car
+                .ReceivedWithSomeArgs()
+                .Turn(ICar.Direction.Right);
+        }
+
         public interface ICar
         {
             void Start();
@@ -318,8 +328,14 @@ namespace NSubstitute.Acceptance.Specs
             void FillPetrolTankTo(int percent);
             void StoreLuggage(params object[] luggage);
             void RecordServiceDates(params DateTime[] serviceDates);
+            void Turn(Direction direction, bool useTurnSignals = true);
             float GetCapacityInLitres();
             event Action Started;
+            public enum Direction
+            {
+                Right = 0,
+                Left = 1
+            }
         }
     }
 }

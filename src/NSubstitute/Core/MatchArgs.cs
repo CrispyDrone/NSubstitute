@@ -7,6 +7,7 @@ namespace NSubstitute.Core
     {
         public static readonly MatchArgs AsSpecifiedInCall = new MatchArgs();
         public static readonly MatchArgs Any = new MatchArgs();
+        public static readonly MatchArgs ExplicitlySpecifiedOnly = new MatchArgs();
 
         private MatchArgs() { }
 

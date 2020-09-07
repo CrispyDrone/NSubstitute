@@ -19,5 +19,7 @@ namespace NSubstitute.Core
         public bool IsOptional => _parameterInfo.IsOptional;
 
         public bool IsOut => _parameterInfo.IsOut;
+
+        public object DefaultValue => _parameterInfo.DefaultValue;
     }
 }

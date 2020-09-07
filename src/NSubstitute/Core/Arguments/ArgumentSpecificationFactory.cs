@@ -98,6 +98,8 @@ namespace NSubstitute.Core.Arguments
             public bool IsOptional => false;
 
             public bool IsOut => false;
+
+            public object DefaultValue => null;
         }
     }
 }

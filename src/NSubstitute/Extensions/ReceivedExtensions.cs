@@ -38,6 +38,15 @@ namespace NSubstitute.ReceivedExtensions
             context.ThreadContext.SetNextRoute(callRouter, x => context.RouteFactory.CheckReceivedCalls(x, MatchArgs.Any, requiredQuantity));
             return substitute;
         }
+
+        public static T ReceivedWithSomeArgs<T>(this T substitute, Quantity requiredQuantity)
+        {
+            var context = SubstitutionContext.Current;
+            var callRouter = context.GetCallRouterFor(substitute);
+
+            context.ThreadContext.SetNextRoute(callRouter, x => context.RouteFactory.CheckReceivedCalls(x, MatchArgs.ExplicitlySpecifiedOnly, requiredQuantity));
+            return substitute;
+        }
     }
 
     /// <summary>

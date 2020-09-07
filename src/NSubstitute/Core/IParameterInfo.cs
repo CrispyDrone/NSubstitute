@@ -7,6 +7,7 @@ namespace NSubstitute.Core
         Type ParameterType { get; }
         bool IsParams { get; }
         bool IsOptional { get; }
+        object DefaultValue { get; }
         bool IsOut { get; }
     }
 }

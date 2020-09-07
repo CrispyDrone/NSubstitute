@@ -260,6 +260,11 @@ namespace NSubstitute
             return substitute.ReceivedWithAnyArgs(Quantity.Exactly(requiredNumberOfCalls));
         }
 
+        public static T ReceivedWithSomeArgs<T>(this T substitute) where T : class
+        {
+            return substitute.ReceivedWithSomeArgs(Quantity.AtLeastOne());
+        }
+
         /// <summary>
         /// Checks this substitute has not received the following call with any arguments.
         /// </summary>
